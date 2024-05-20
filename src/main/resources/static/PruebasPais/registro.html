@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Registro de Usuario</h1>
+    <form id="registroForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" required>
+        <label for="piso">Piso:</label>
+        <input type="text" id="piso" name="piso" required>
+        <label for="letra">Letra:</label>
+        <input type="text" id="letra" name="letra" required>
+        <button type="submit">Registrar</button>
+    </form>
+    <p id="mensaje"></p>
+</div>
+<script src="registro.js"></script>
+</body>
+</html>
