@@ -9,7 +9,7 @@ import edu.comillas.icai.gitt.pat.spring.jpa.Model.RegisterRequest;
 import edu.comillas.icai.gitt.pat.spring.jpa.Repositorio.AppUserRepository;
 import edu.comillas.icai.gitt.pat.spring.jpa.Repositorio.TokenRepository;
 import edu.comillas.icai.gitt.pat.spring.jpa.Servicio.UserServiceInterface;
-import edu.comillas.icai.gitt.pat.spring.p5.util.Hashing;
+import edu.comillas.icai.gitt.pat.spring.jpa.util.Hashing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -54,8 +54,7 @@ public class UserService implements UserServiceInterface {
     }
     public ProfileResponse profile(AppUser appUser, ProfileRequest profile) {
         appUser.name = profile.name();
-        // TODO6 : appUser.password = profile.password();
-        appUser.password = hashing.hash(profile.password()); //TODO14
+        appUser.password = hashing.hash(profile.password());
         appUserRepository.save(appUser);
         return new ProfileResponse(appUser.name,appUser.email);
     }
@@ -75,7 +74,7 @@ public class UserService implements UserServiceInterface {
     }
 
     public void delete(AppUser appUser) {
-        appUserRepository.delete(appUser); // No debería haber problema con un token asociado en la table de tokens debido a OnDeleteAction.CASCAD
+        appUserRepository.delete(appUser);
     }
 
 }

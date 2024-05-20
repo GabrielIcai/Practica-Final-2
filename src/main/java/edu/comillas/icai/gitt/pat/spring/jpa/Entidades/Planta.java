@@ -19,4 +19,7 @@ public class Planta {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "app_user_id", nullable = false)
-    public AppUser appUser;}
+    public AppUser appUser;
+    @ManyToOne
+    @JoinColumn(name = "token_id", nullable = false)
+    public Token token;}

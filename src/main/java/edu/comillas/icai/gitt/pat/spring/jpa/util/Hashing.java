@@ -1,4 +1,4 @@
-package edu.comillas.icai.gitt.pat.spring.p5.util;
+package edu.comillas.icai.gitt.pat.spring.jpa.util;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
