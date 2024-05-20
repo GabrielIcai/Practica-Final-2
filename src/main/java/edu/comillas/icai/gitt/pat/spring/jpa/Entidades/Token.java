@@ -11,6 +11,7 @@ import java.util.List;
 public class Token {
     @Id @GeneratedValue(strategy = GenerationType.UUID) public String id;
     @OneToOne(optional=false)
+    @JoinColumn(name = "app_user_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE) public AppUser appUser;
     @OneToMany(mappedBy = "token")
     @OnDelete(action = OnDeleteAction.CASCADE)

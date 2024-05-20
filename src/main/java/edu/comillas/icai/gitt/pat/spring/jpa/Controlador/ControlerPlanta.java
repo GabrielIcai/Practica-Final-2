@@ -2,6 +2,7 @@ package edu.comillas.icai.gitt.pat.spring.jpa.Controlador;
 
 import edu.comillas.icai.gitt.pat.spring.jpa.Entidades.AppUser;
 import edu.comillas.icai.gitt.pat.spring.jpa.Entidades.Planta;
+import edu.comillas.icai.gitt.pat.spring.jpa.Model.PlantaRequest;
 import edu.comillas.icai.gitt.pat.spring.jpa.Repositorio.RepoPlanta;
 import edu.comillas.icai.gitt.pat.spring.jpa.Servicio.ServicioPlantas;
 import edu.comillas.icai.gitt.pat.spring.jpa.Servicio.UserService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.time.Duration;
 
 
 @RestController
@@ -22,12 +25,14 @@ public class ControlerPlanta{
 
     @PostMapping("/api/crearPlanta")
     @ResponseStatus(HttpStatus.CREATED)
-    public Planta crea(@RequestBody Planta planta, @CookieValue(value = "session", required = true) String session) {
+    public Planta crea(@RequestBody PlantaRequest request, @CookieValue(value = "session", required = true) String session) {
         AppUser appUser = userService.authentication(session);
         if (appUser == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
-        return servicioPlantas.creaPlanta(planta, appUser);
+        Duration duracion = Duration.ofMinutes(request.duracion);
+        return servicioPlantas.creaPlanta(request.nombre, duracion, appUser);
+
     }
 
     @GetMapping("/api/plantas")

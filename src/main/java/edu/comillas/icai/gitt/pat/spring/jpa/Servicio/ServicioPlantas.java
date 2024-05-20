@@ -23,8 +23,12 @@ public class ServicioPlantas {
 
     @Autowired
     AppUserRepository appUserRepository;
-    public Planta creaPlanta(Planta planta, AppUser appUser) {
+    public Planta creaPlanta(String nombre,Duration duracion, AppUser appUser) {
+        Planta planta=new Planta();
         planta.appUser = appUser;
+        planta.temporizadorRiego=(LocalDateTime.now());
+        planta.Regada=FALSE;
+        planta.tiempoRiego=duracion;
         return repoPlanta.save(planta);
     }
 

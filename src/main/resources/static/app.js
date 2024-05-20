@@ -1,50 +1,40 @@
-function datosPerfil() {
-  return fetch('/api/users/me').then(res => res.json());
-}
+document.addEventListener("DOMContentLoaded", function() {
+    // Hacer una solicitud a la API para obtener la lista de plantas
+    fetch("/api/plantas")
+        .then(response => response.json())
+        .then(data => {
+            const plantasBody = document.getElementById("plantasBody");
+            data.forEach(planta => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${planta.nombre}</td>
+                    <td>${planta.Regada ? "Regada" : "No Regada"}</td>
+                    <td>${planta.appUser.name}</td>
+                    <td>${planta.appUser.piso}</td>
+                    <td>${planta.appUser.letra}</td>
+                    <td><button onclick="regarPlanta(${planta.id})">Regar</button></td>
+                `;
+                plantasBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error("Error al obtener las plantas:", error));
+});
 
-function articuloInicio() {
-  return datosPerfil().then(perfil => {
-    document.getElementById('nombre-inicio').textContent = perfil.name;
-    document.getElementById('tel-inicio').textContent = perfil.role;
-    document.getElementById('email-inicio').textContent = perfil.email;
-  });
-}
-
-function salir() {
-  fetch('/api/users/me/session', {method: 'delete'})
-    .then(() => location.href = 'login.html');
-}
-
-function baja() {
-  if (confirm("Esto borrará tu usuario, ¿estás seguro?")) {
-    fetch('/api/users/me', {method: 'delete'})
-      .then(() => location.href = 'login.html');
-  }
-}
-
-addEventListener('hashchange', inicializar);
-
-function inicializar() {
-  Array.from(document.querySelectorAll('article')).forEach(a => a.hidden = true);
-  Array.from(document.querySelectorAll('nav a')).forEach(a => a.classList.remove('active'));
-  const articulo = location.hash || "#inicio";
-  cargarArticulo(articulo).then(() => mostrarArticulo(articulo));
-}
-
-function cargarArticulo(articulo) {
-  switch(articulo) {
-    case '#inicio': return articuloInicio();
-    default: return articuloInicio();
-  }
-}
-
-function mostrarArticulo(articulo) {
-  document.querySelector(articulo).hidden = false;
-  document.querySelector(`a[href="${articulo}"]`).classList.add('active');
-}
-
-function form2json(event) {
-  event.preventDefault();
-  const data = new FormData(event.target);
-  return JSON.stringify(Object.fromEntries(data.entries()));
+function regarPlanta(id) {
+    // Hacer una solicitud PUT a la API para regar la planta con el ID especificado
+    fetch(`/api/plantas/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({})
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Error al regar la planta");
+        }
+        // Recargar la página para actualizar el estado de la planta
+        location.reload();
+    })
+    .catch(error => console.error("Error al regar la planta:", error));
 }
