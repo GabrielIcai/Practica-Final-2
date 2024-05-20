@@ -1,0 +1,154 @@
+
+h2 {
+  font-size: 3rem;
+  color: darkblue;
+  text-align: center;
+}
+h3, h4 {
+  font-size: 2rem;
+  color: darkblue;
+}
+
+h5 {
+  font-size: 1rem;
+  color: black;
+}
+
+.parrafo_principal {
+  font-size: 1.2rem;
+  color: darkblue;
+  text-align: center;
+
+}
+
+
+input:user-invalid {
+    border: 0.2rem solid red;
+    box-shadow: 0 0 2rem red;
+    outline: red;
+}
+input[type="text"]:valid {
+    border: 0.2rem solid green;
+    box-shadow: 0 0 0.2rem green;
+    outline: green;
+}
+
+
+
+
+.contenedor {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    background: darkblue;
+    padding: 0;
+    justify-content: center;
+  }
+.contenedor li {
+    font: 1rem sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+    color: white;
+    user-select: none;
+    flex: 1 1 0;
+  }
+.contenedor a {
+    font: 1rem sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    padding: 0.7rem;
+    color: white;
+    user-select: none;
+
+  }
+
+
+img {
+    max-width: 100%;
+    display: block;
+  }
+figure {
+    border: 5px solid darkblue;
+    width: 28rem;
+    text-align: center;
+    font-family: sans-serif;
+  }
+
+
+
+.video, .foto, .tabla {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+
+.formulario {
+    display: flex;
+    background-color: plum;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+article {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "main";
+  gap: 2em;
+  padding-top: 1em;
+  padding-left: 2em;
+  padding-bottom: 4em;
+  text-align: center;
+}
+.contenido {
+  grid-area: main;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "footer";
+  gap: 7px;
+  padding: 12px;
+  text-align: center;
+  font: 0.8rem sans-serif;
+}
+
+.pie {
+  background: plum;
+  grid-area: footer;
+}
+
+#formulario input[type="text"],
+#formulario input[type="email"],
+#formulario input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+#formulario input[type="submit"],
+#formulario input[type="reset"] {
+  background-color: darkblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#formulario input[type="submit"]:hover,
+#formulario input[type="reset"]:hover {
+  background-color: lightblue;
+}
