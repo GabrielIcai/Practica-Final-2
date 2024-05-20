@@ -1,14 +1,11 @@
 package edu.comillas.icai.gitt.pat.spring.jpa.Model;
 
-public class LoginRequest {
-    public  String email;
-    public String credenciales;
 
-    public String getEmail() {
-        return email;
-    }
+import jakarta.validation.constraints.NotBlank;
 
-    public String getCredenciales() {
-        return credenciales;
-    }
-}
+public record LoginRequest(
+    @NotBlank
+    String email,
+    @NotBlank
+    String password
+) {}
