@@ -78,6 +78,15 @@ const handleForm = async () => {
      modal.remove();
    });
  };
+  document.getElementById("formulario").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evitar el envío del formulario por defecto
+    // Simulación del envío del formulario
+    setTimeout(function() {
+      // Aquí iría la lógica de envío de datos al servidor
+      // Si el envío es exitoso, redirigir a la página de inicio
+      window.location.href = "inicio.html";  
+    }, 1000);  
+    });
 
 
 document.querySelector('#formulario').addEventListener('submit', handleForm);
